@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Say yes</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            position: relative;
+            background: url('fondo-romantico1.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        #preContent, #content {
+            background-color: rgba(255, 255, 255, 0.7); /* Fondo transparente */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 80%;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        #imageContainer img {
+            width: 30%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px; /* Esquinas redondeadas */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 10px;
+        }
+
+        h1, h2, h3, p {
+            color: #ff406e; /* Texto en color rosa fuerte */
+            font-weight: bold;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+
+        #noButton {
+            background-color: #ff6b9c;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #noButton:hover {
+            background-color: #ff4782;
+        }
+
+        .yes {
+            background-color: #ff1493;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .yes:hover {
+            background-color: #ff0066;
+        }
+
+        #noButton.moving {
+            position: absolute;
+        }
+
+        #copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: #ff1427;
+            border-radius: 70%;
+            width: 10px;
+            height: 10px;
+            animation: particleAnimation linear infinite;
+        }
+
+        @keyframes particleAnimation {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preContent">
+        <h2>Momentos especiales....</h2>
+        <p>¡Hola Juquila! Estos son algunos de los muchos momentos que pasamos juntos... 🌟</p>
+        <div id="imageContainer">
+            <img src="romantica3.jpg" alt="Imagen Romántica 1">
+            <img src="romantica4.jpg" alt="Imagen Romántica 2">
+        </div>
+    </div>
+
+    <div id="content">
+        <p>Ahora quiero hacerte esta pregunta una vez mas...💗</p>
+        <h1>¿Quieres ser mi novia? 💖</h1>
+        <p>Me harias el hombre mas feliz del universo si escoges la respuesta "Si" 🥺.</p>
+        <button onclick="mostrarRespuesta()" id="noButton" onmouseover="moverAleatoriamente()">No 😥</button>
+        <button class="yes" onclick="mostrarMensaje()">Si 😍</button>
+    </div>
+
+    <div id="copyright">
+        <p>&copy; 2023 Isaac Barragán Hernández. Todos los derechos reservados.</p>
+    </div>
+
+    <script>
+        function createParticle() {
+            var particle = document.createElement("div");
+            particle.className = "particle";
+            document.body.appendChild(particle);
+
+            var size = Math.random() * 10 + 5 + "px";
+            particle.style.width = size;
+            particle.style.height = size;
+
+            var startPosition = Math.random() * window.innerWidth + "px";
+            particle.style.left = startPosition;
+
+            var duration = Math.random() * 2 + 1 + "s";
+            particle.style.animationDuration = duration;
+
+            setTimeout(function () {
+                particle.remove();
+            }, duration.slice(0, -1) * 1000);
+        }
+
+        setInterval(createParticle, 500);
+    </script>
+
+    <script>
+        function moverAleatoriamente() {
+            var button = document.getElementById("noButton");
+            button.classList.add("moving");
+
+            var windowHeight = window.innerHeight;
+            var windowWidth = window.innerWidth;
+
+            var buttonHeight = button.clientHeight;
+            var buttonWidth = button.clientWidth;
+
+            var newPositionTop = Math.min(Math.max(Math.floor(Math.random() * (windowHeight - buttonHeight)), 0), windowHeight - buttonHeight);
+            var newPositionLeft = Math.min(Math.max(Math.floor(Math.random() * (windowWidth - buttonWidth)), 0), windowWidth - buttonWidth);
+
+            button.style.top = newPositionTop + "px";
+            button.style.left = newPositionLeft + "px";
+        }
+
+        function mostrarMensaje() {
+            alert("Gracias por decir que sí, prometo amarte, cuidarte y respetarte por siempre 😊❤️😍");
+        }
+    </script>
+</body>
+</html>
